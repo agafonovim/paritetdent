@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Вакансии в Паритет-Дент{% endblock %}
+{% block description %}Все вакансии стоматологического центра Паритет-Дент в Соломбале. Откликайтесь и присоединяйтесь к нашей команде!{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="page-title">
+            <div class="page-title_wrapper">
+                <h1 class="title-text text_center">Вакансии</h1>
+            </div>
+        </div>
+        <div class="container box">
+            <div class="job-list">
+                {% if object_list %}
+                    {% for job in object_list %}
+                        <a class="card-frame" href="{{ job.get_absolute_url }}">
+                            <div class="card-frame__job">
+                                <span class="position">{{ job.position }}</span>
+                                <span class="schedule">{{ job.get_schedule_display }}</span>
+                                <span class="apply-job">Подробнее <i class="fas fa-chevron-right"></i></span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <div class="card no-job__card">
+                        <div class="no-job">
+                            <div class="no-job__icon">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                            <span>Нет открытых вакансий :(</span>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

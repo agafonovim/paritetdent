@@ -1,0 +1,12 @@
+<button id="menu-button" class="show-menu" aria-label="Toggle navigation">
+    <i id="menu-icon" class="icon icon__default">
+    </i>
+</button>
+<nav id="menu" class="menu menu_closed">
+    <ul class="menu__list">
+        <li><a {% ifequal request.resolver_match.url_name "index" %}class="active"{% endifequal %} href="{% url 'about:index' %}">Главная</a></li>
+        <li><a {% ifequal request.resolver_match.url_name "services_list" %}class="active"{% endifequal %} href="{% url 'services:services_list' %}">Услуги и цены</a></li>
+        <li><a {% ifequal request.resolver_match.url_name "workers_list" %}class="active"{% endifequal %} href="{% url 'workers:workers_list' %}">Наша команда</a></li>
+        <li><a {% ifequal request.resolver_match.url_name "about" %}class="active"{% endifequal %} href="{% url 'about:about' %}">О клинике</a></li>
+    </ul>
+</nav>

@@ -1,0 +1,26 @@
+{% load about_tag %}
+<p>
+    {% get_working_status as status %}
+    {% for schedule in schedule %}
+        {% ifequal day_now schedule.day %}
+            {% if status %}
+                <span class="opened">
+            {% else %}
+                <span class="closed">
+            {% endif %}
+        {% if schedule.day_off %}
+            <strong>{{ schedule.get_day_display }}:</strong> выходной {% if not forloop.last %}<br>{% endif %}
+        {% else %}
+            <strong>{{ schedule.get_day_display }}:</strong> с {{ schedule.opening_hours }} до {{ schedule.closing_hours }} {% if not forloop.last %}<br>{% endif %}
+        {% endif %}
+        </span>
+
+        {% else %}
+            {% if schedule.day_off %}
+                <strong>{{ schedule.get_day_display }}:</strong> выходной {% if not forloop.last %}<br>{% endif %}
+            {% else %}
+                <strong>{{ schedule.get_day_display }}:</strong> с {{ schedule.opening_hours }} до {{ schedule.closing_hours }} {% if not forloop.last %}<br>{% endif %}
+            {% endif %}
+        {% endifequal %}
+    {% endfor %}
+</p>

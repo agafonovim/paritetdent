@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Ошибка 500 - Ошибка сервера{% endblock %}
+{% block description %}Сервер не отвечает на запрос{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="container box">
+            <div class="form error">
+                <a href="{% url 'about:index' %}" class="error__back-link"><i class="fas fa-chevron-left" aria-hidden="true"></i> На главную</a>
+                <div class="card">
+                    <div class="error__icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <p class="error__text">Ошибка сервера...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

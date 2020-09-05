@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Заявка успешно отправлена!{% endblock %}
+{% block description %}Заявка успешно отправлена!{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="container box">
+            <div class="form success">
+                <a href="{% url 'about:index' %}" class="success__back-link"><i class="fas fa-chevron-left" aria-hidden="true"></i> На главную</a>
+                <div class="card">
+                    <div class="success__icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <p class="success__text">Заявка успешно отправлена!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

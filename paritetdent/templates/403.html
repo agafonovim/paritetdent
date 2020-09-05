@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Ошибка 403 - Доступ запрещен{% endblock %}
+{% block description %}Доступ запрещен{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="container box">
+            <div class="form error">
+                <a href="{% url 'about:index' %}" class="error__back-link"><i class="fas fa-chevron-left" aria-hidden="true"></i> На главную</a>
+                <div class="card">
+                    <div class="error__icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <p class="error__text">Доступ запрещен!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

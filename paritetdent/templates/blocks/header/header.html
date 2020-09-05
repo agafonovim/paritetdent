@@ -1,0 +1,45 @@
+{% load about_tag %}
+<header class="header">
+    <div class="top-header">
+        <div class="top-header_wrapper">
+            <div class="working-status">
+            {% get_working_status as status %}
+                {% if status %}
+                    <button class="working-status__button opened">
+                        Открыты, работаем
+                        <i class="fas fa-lock-open"></i>
+                    </button>
+                {% else %}
+                    <button class="working-status__button red-muted">
+                        Режим работы
+                        <i class="fas fa-calendar-alt"></i>
+                    </button>
+                {% endif %}
+                <div class="modal-overlay" style="display: none;">
+                    <div class="modal modal__small">
+                        <div class="modal-header">
+                            <h2 class="modal-header__title">Режим работы</h2>
+                            <button class="modal-header__close-button"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="modal-body">
+                            {% get_schedule %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="phones">
+                <a class="number" href="tel:+79027028998">+7 (902) 702-89-98</a>
+                <div class="phones__icon"></div>
+                <a class="number number__home" href="tel:+78182478999">47-89-99</a>
+            </div>
+        </div>
+    </div>
+    <div class="main-header {% if shadow %}shadow{% endif %}">
+        <div class="main-header_wrapper">
+            <a href="{% url 'about:index' %}" class="brand">
+                <img src="/static/assets/img/logotype.svg" alt="Стоматология «Паритет-Дент» в Соломбале">
+            </a>
+            {% include 'blocks/header/menu.html' %}
+        </div>
+    </div>
+</header>

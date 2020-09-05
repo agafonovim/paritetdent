@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load about_tag %}
+
+{% block title %}Информация о стоматологическом центре Паритет-Дент{% endblock %}
+{% block description %}Предлагаем ознакомиться с информацией о стоматологическом центре Паритет-Дент в Соломбале{% endblock %}
+{% block top-files-include %}
+    <link rel="stylesheet" href="{% static 'assets/css/jquery.fancybox.min.css' %}">
+    <script src="https://api-maps.yandex.ru/2.1/?load=Geolink&amp;lang=ru_RU&amp;apikey=8baa360e-6db5-444d-ab2a-ccd64eb88d75"></script>
+{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="page-title page-title_colored">
+            <div class="page-title_wrapper">
+                <h1 class="title-text text_left">О клинике</h1>
+            </div>
+        </div>
+        <div class="container box">
+            <div class="about">
+                <div class="main-block">
+                    <div class="card">
+                        <h2>
+                            <i class="fas fa-at"></i>
+                            Контакты
+                        </h2>
+                        <p>
+                            <strong>Телефоны:</strong> <a href="tel:+79027028998">+7 (902) 702-89-98</a> и <a href="tel:+78182478999">47-89-99</a>
+                        </p>
+                        <p>
+                            <strong>Электронная почта:</strong> <a href="mailto:paritetdent29-ad@mail.ru">paritetdent29-ad@mail.ru</a>
+                        </p>
+                        <p>
+                            <strong>Мы ВКонтакте:</strong> <a href="//vk.com/paritetdent">vk.com/paritetdent</a>
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h2>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Как нас найти?
+                        </h2>
+                        <address>
+                            <strong>г. Архангельск</strong>, Никольский проспект, дом 37/1
+                        </address>
+                        <p class="ymaps-geolink" data-description="Никольский проспект, дом 37 корпус 1" data-bounds="[64.579112, 40.504335]" data-type="biz">Паритет-Дент на Яндекс.Картах</p>
+                        <a target="_blank" class="ymaps" href="https://yandex.ru/maps/-/CCQzmRT5KB"><i class="fas fa-location-arrow" style="margin-right: 5px;"></i>Паритет-Дент на Яндекс.Картах</a>
+                        <h2>
+                            <i class="fas fa-clock"></i>
+                            Режим работы
+                        </h2>
+                        {% get_schedule %}
+                    </div>
+                    <div class="card" id="info">
+                        <h2>
+                            <i class="fas fa-align-justify"></i>
+                            Информация для пациентов
+                        </h2>
+                        <p>
+                            Юридическое название: ООО "ПАРИТЕТ-ДЕНТ" <br>
+                            Реквизиты: ИНН: 2901284143, ОГРН: 1172901003802 <br>
+                            Юридический адрес: 163020, город Архангельск, Никольский проспект, дом 37 корпус 1
+                        </p>
+                        <h3>Положения и лицензия</h3>
+                        {% for regulation in regulations %}
+                            <a href="{{ regulation.get_absolute_url }}" class="regulation-link">
+                                {{ regulation.title }}
+                            </a>
+                        {% endfor %}
+                        <div class="license-view">
+                            <button class="license-view__button">
+                                Лицензия
+                            </button>
+                            <div class="licence">
+                                <p>Для увеличения, нажмите на изображение</p>
+                                <div class="licence-items">
+                                    {% for file in licence %}
+                                        <div class="item">
+                                            <a href="{{ file.image.url }}" data-fancybox="licenses" data-caption="{{ file.title }}">
+                                                <img src="{{ file.image.url }}" alt="{{ file.title }}" />
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2>
+                            <i class="fas fa-address-book"></i>
+                            Контакты контролирующих органов
+                        </h2>
+                        <div class="control-contacts">
+                            <h3>Территориальный орган Росздравнадзора по Архангельской области и Ненецкому автономному округу</h3>
+                            <p>
+                                Адрес: 163002, г. Архангельск, площадь Ленина, дом 4 <br>
+                                Телефон: +7 (8182) 46-22-27
+                            </p>
+                            <h3>Управление федеральной службы по надзору в сфере защиты прав потребителей  и благополучия человека (Роспотребнадзор)</h3>
+                            <p>
+                                Адрес: 163000, г. Архангельск, ул. Гайдара, д. 24 <br>
+                                Телефон: +7 (8182) 20-05-69
+                            </p>
+                            <h3>Отдел организации медицинской помощи взрослому населению Министерства здравоохранения Архангельской области</h3>
+                            <p>
+                                Адрес: 163000, г. Архангельск, пр. Троицкий, д. 49 <br>
+                                Телефон: +7 (8182) 45-45-08
+                            </p>
+                            <h3>ФБУЗ «Центр гигиены и эпидемиологии в Архангельской области»</h3>
+                            <p>
+                                Адрес: 163001, г. Архангельск, пр. Троицкий, д. 164, корпус 1 <br>
+                                Телефон: +7 (8182) 27-64-83
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% include 'blocks/sidebar/sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block bottom-files-include %}
+    <script src="{% static 'assets/js/jquery.fancybox.min.js' %}"></script>
+    <script>
+        $('[data-fancybox="licenses"]').fancybox({
+            buttons: [
+                "zoom",
+                "close"
+            ],
+            lang: "ru",
+            i18n: {
+                ru: {
+                    CLOSE: "Закрыть",
+                    NEXT: "Следующее изображение",
+                    PREV: "Предыдущее изображение",
+                    ERROR: "Запрашиваемый контент недоступен. <br/> Пожалуйста, попробуйте позже.",
+                    ZOOM: "Приблизить"
+                }
+            }
+        });
+    </script>
+{% endblock %}

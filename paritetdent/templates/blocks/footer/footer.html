@@ -1,0 +1,46 @@
+{% load static %}
+<footer class="footer">
+    <div class="container">
+        <div class="footer__wrapper">
+            <div class="top-block">
+                <div class="info">
+                    <div class="brand">
+                        <img src="{% static "assets/img/logotype_tooth.svg" %}" alt="Паритет-Дент">
+                    </div>
+                    <p>
+                        ООО "Паритет-Дент" <br>
+                        Лицензия: ЛО-29-01-002314 от 06.09.2017 <br>
+                    </p>
+                    <p>
+                        <i class="fas fa-mobile-alt"></i> <a href="tel:+79027028998">+7 (902) 702-89-98</a> <br>
+                        <i class="fas fa-map-marker-alt"></i> Никольский проспект, дом 37/1
+                    </p>
+                    <p>Информация на сайте не является публичной офертой.</p>
+                </div>
+                <div class="group group__services">
+                    <span class="group__title">Услуги</span>
+                    <ul class="group__list">
+                        <li><a href="{% url 'services:sales_list' %}">Акции</a></li>
+                        <li><a href="{% url 'services:pricelist_list' %}">Прайс-лист</a></li>
+                        <li><a href="{% url 'services:services_list' %}">Наши услуги</a></li>
+                        <li><a href="{% url 'services:appointment_form' %}">Запись на приём</a></li>
+                    </ul>
+                </div>
+                <div class="group group__team">
+                    <span class="group__title">Команда</span>
+                    <ul class="group__list">
+                        <li><a href="{% url 'workers:workers_list' %}">Сотрудники</a></li>
+                        <li><a href="{% url 'jobs:job_list' %}">Вакансии</a></li>
+                    </ul>
+                </div>
+                <div class="group group__about">
+                    <span class="group__title">О нас</span>
+                    <ul class="group__list">
+                        <li><a href="{% url 'about:about' %}#info">Информация для пациентов</a></li>
+                        <li><a href="{% url 'about:regulation_detail' slug='privacy' %}">Обработка персональных данных</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,17 @@
+{% load static %}
+{% load sales_tag %}
+{% get_sales_status as sales_status %}
+{% if sales_status %}
+    <div class="main-sales-banner">
+        <div class="banner-image">
+            <img src="{% static 'assets/img/present.svg' %}" alt="Акции и подарки">
+        </div>
+        <div class="banner-info">
+            <div class="banner-text">
+                <h2>Акции и спецпредложения</h2>
+                <p>Актуальные и самые интересные, главное — не опоздать!</p>
+            </div>
+            <a class="btn btn-outline" href="{% url 'services:sales_list' %}">Подробнее!</a>
+        </div>
+    </div>
+{% endif %}

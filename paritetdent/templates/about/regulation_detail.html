@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ regulation.title }}{% endblock %}
+{% block description %}{{ regulation.title }}, стоматологический центр Паритет-Дент. Последнее изменение: {{ regulation.modified_date|date:"d.m.Y" }}.{% endblock %}
+
+{% block content %}
+    <main class="content">
+            <div class="page-title page-title_colored">
+                <div class="page-title_wrapper">
+                    <h1 class="title-text text_center">{{ regulation.title }}</h1>
+                    <p class="under-title-text text_center">Последнее изменение: {{ regulation.modified_date|date:"d.m.Y" }}</p>
+                </div>
+            </div>
+            <div class="container box">
+                <div class="regulation">
+                    {{ regulation.text|safe }}
+                </div>
+            </div>
+        </main>
+{% endblock %}

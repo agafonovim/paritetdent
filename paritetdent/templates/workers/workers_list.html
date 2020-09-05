@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Наша команда{% endblock %}
+{% block description %}Сотрудники стоматологического центра Паритет-Дент{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="page-title page-title_colored">
+            <div class="page-title_wrapper ">
+                <h1 class="title-text text_left">Наши специалисты</h1>
+            </div>
+        </div>
+        <div class="container box">
+            <div class="team">
+                <div class="main-block">
+                    <div class="card">
+                        {% for worker in workers_list %}
+                        <div class="team-card">
+                            <button class="team-card__button">
+                                <div class="team-card__main-info">
+                                    <div class="switch">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="person">
+                                        <h2 class="person-name">{{ worker }}</h2>
+                                        <p class="person-position">
+                                                {{  worker.position.all|join:", "|lower|capfirst }}
+                                        </p>
+                                    </div>
+                                    <p class="experience">Стаж: <span class="experience__years">{{ worker.experience }}</span></p>
+                                </div>
+                            </button>
+                            <div class="team-card__other-info_wrapper">
+                                <div class="team-card__other-info">
+                                    <p class="info">{{ worker.description|linebreaksbr }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% include 'blocks/sidebar/sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

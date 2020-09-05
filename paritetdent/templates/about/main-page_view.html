@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Паритет-Дент — доступное лечение, удаление, протезирование и имплантация зубов в Соломбале{% endblock %}
+{% block description %}Стоматологический центр Паритет-Дент оказывает широкий спектр стоматологических услуг: детская стоматология, лечение зубов и удаление, протезирование и имплантация зубов, гигиена зубов. Услуги оказываются в Соломбале, г. Архангельск{% endblock %}
+{% block top-files-include %}
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=8baa360e-6db5-444d-ab2a-ccd64eb88d75&lang=ru_RU"></script>
+{% endblock %}
+
+{% block header-shadow %}
+    {% with shadow=True %}
+        {{ block.super }}
+    {% endwith%}
+{% endblock header-shadow %}
+
+{% block content %}
+    <main class="content">
+        <div class="introduction">
+            <div class="fullscreen-bg">
+                <div class="overlay"></div>
+                <video preload="metadata" loop muted poster="{% static 'assets/media/intro-poster.jpg' %}" class="fullscreen-bg__video">
+                    <source src="{% static 'assets/media/intro.mp4' %}" type="video/mp4">
+                    Ваш браузер не поддерживает видео :(
+                </video>
+            </div>
+            <div class="introduction__wrapper">
+                <div class="introduction__header">
+                    <h1>Стоматология в Соломбале</h1>
+                    <p>Для взрослых и детей</p>
+                </div>
+                <div class="introduction__header-teeth">
+                    <img src="{% static 'assets/img/teeth.svg' %}" alt="Красивые зубки!">
+                </div>
+            </div>
+        </div>
+        <div class="container box">
+            <div class="main-page__services_wrapper">
+                <div class="main-page__services card">
+                    <h2 class="card-header">Направления лечения</h2>
+                    <div class="card-body">
+                        {% for service in services %}
+                            <div class="service-block">
+                                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+                                <p>{{ service.title }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'services:services_list' %}" class="btn btn-primary">Все услуги <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="main-page__info_wrapper">
+                <div class="main-page__info">
+                    <div class="info-block">
+                        <div class="info-block__image">
+                            <img src="{% static 'assets/img/angel.svg' %}" alt="С заботой о детях">
+                        </div>
+                        <div class="info-block__text">
+                            <h3>С заботой о детях</h3>
+                            <p>Перед приемом дети с радостью играют в игровой комнате, а во время лечения зубов смотрят любимые мультфильмы</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-block__image">
+                            <img src="{% static 'assets/img/diamond.svg' %}" alt="Высокое качество">
+                        </div>
+                        <div class="info-block__text">
+                            <h3>Высокое качество</h3>
+                            <p>Основываясь на своем опыте, мы используем только лучшие и проверенные медицинские материалы.</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-block__image">
+                            <img src="{% static 'assets/img/success.svg' %}" alt="Лечение зубов без боли">
+                        </div>
+                        <div class="info-block__text">
+                            <h3>Лечение без боли и стресса</h3>
+                            <p>Местная анестезия предоставляет возможность очень качественно обезболить практически любую стоматологическую процедуру.</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="info-block__image">
+                            <img src="{% static 'assets/img/support.svg' %}" alt="Тёплое отношение">
+                        </div>
+                        <div class="info-block__text">
+                            <h3>Тёплое отношение</h3>
+                            <p>Вам больше не нужно бояться стоматологов. Наши специалисты гарантируют комфортное и безболезненное лечение.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-page__sales_wrapper">
+                {% include 'blocks/sales-banners/main-sales-banner.html' %}
+            </div>
+            <div class="main-page__reviews_wrapper">
+                <div class="main-page__reviews">
+                    <h2>Что говорят наши пациенты?</h2>
+                    <div class="main-page__reviews_list">
+                        <a target="_blank" class="review-card" href="https://arkhangelsk.zoon.ru/medical/stomatologicheskij_tsentr_paritet-dent_na_nikolskom_prospekte/#reviews">
+                                <span class="review-card__image">
+                                    <img src="{% static 'assets/img/zoon.svg' %}" alt="Zoon">
+                                </span>
+                            <span class="review-card__text">Отзывы в Zoon <i class="fas fa-chevron-right"></i></span>
+                        </a>
+                        <a target="_blank" class="review-card" href="https://yandex.ru/profile/191952338949">
+                                <span class="review-card__image">
+                                    <img src="{% static 'assets/img/yandex.svg' %}" alt="Yandex">
+                                </span>
+                            <span class="review-card__text">Отзывы в Яндекс <i class="fas fa-chevron-right"></i></span>
+                        </a>
+                        <a target="_blank" class="review-card" href="https://goo.gl/maps/vwd1rDL7qyCxzEUw7">
+                                <span class="review-card__image">
+                                    <img src="{% static 'assets/img/google.svg' %}" alt="Google">
+                                </span>
+                            <span class="review-card__text">Отзывы в Google <i class="fas fa-chevron-right"></i></span>
+                        </a>
+                        <a target="_blank" class="review-card" href="https://go.2gis.com/234tmw">
+                                <span class="review-card__image">
+                                    <img src="{% static 'assets/img/2gis.svg' %}" alt="2GIS">
+                                </span>
+                            <span class="review-card__text">Отзывы в 2GIS <i class="fas fa-chevron-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="main-page__location_wrapper">
+                <div class="main-page__location">
+                    <div class="card">
+                        <div id="map"></div>
+                        <div class="contacts">
+                            <h3>Архангельск, <br> <span class="area">Соломбала</span></h3>
+                            <div class="contacts-list">
+                                <div class="contacts-list__item">
+                                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                                    <h4>Позвоните нам</h4>
+                                    <p class="text">
+                                        <a href="tel:+79027028998">+7 (902) 702-89-98</a>
+                                    </p>
+                                </div>
+                                <div class="contacts-list__item">
+                                    <div class="contact-icon"><i class="fab fa-vk"></i></div>
+                                    <h4>Мы ВКонтакте</h4>
+                                    <p class="text">
+                                        <a href="https://vk.com/paritetdent">vk.com/paritetdent</a>
+                                    </p>
+                                </div>
+                                <div class="contacts-list__item">
+                                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                    <h4>Наш адрес</h4>
+                                    <address class="text">
+                                        Никольский проспект, дом 37/1
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-page__description_wrapper">
+                <div class="main-page__description">
+                    <div class="description__item">
+                        <h3>Удачное расположение</h3>
+                        <p>
+                            180 метров от ТЦ "Адмиралтейский", <br>
+                            бесплатная парковка перед входом
+                        </p>
+                    </div>
+                    <div class="description__item">
+                        <h3>Уютная атмосфера</h3>
+                        <p>Спокойный интерьер, отсутствие очередей, шума и суеты</p>
+                    </div>
+                    <div class="description__item">
+                        <h3>Удобные способы оплаты</h3>
+                        <p>Принимаем банковские карты Visa, MasterCard, Maestro, МИР и наличные</p>
+                    </div>
+                </div>
+            </div>
+            <div class="main-page__appointment_wrapper">
+                <div class="main-page__appointment">
+                    <h2>Не знаете с чего начать?</h2>
+                    <p>Мы сами перезвоним Вам, просто заполните поля формы для обратного звонка</p>
+                    <a class="btn btn-outline" href="{% url 'services:appointment_form' %}">Обратный звонок <i class="fas fa-phone-volume"></i></a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block bottom-files-include %}
+    <script>
+        ymaps.ready(init);
+        function init(){
+            var myMap = new ymaps.Map("map", {
+                center: [64.579112, 40.504335],
+                controls: ['zoomControl'],
+                zoom: 16
+            });
+            myMap.geoObjects.add(new ymaps.Placemark([64.579112, 40.504335], {
+            }, {
+                preset: 'islands#dotIcon',
+                iconColor: '#009EE0'
+            }));
+        }
+    </script>
+{% endblock %}

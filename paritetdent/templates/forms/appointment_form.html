@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Запись на приём{% endblock %}
+{% block description %}Запись на прием ко врачу стоматологического центра Паритет-Дент в Соломбале{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="page-title">
+            <div class="page-title_wrapper">
+                <h1 class="title-text text_center">Запись на приём</h1>
+                <p class="under-title-text text_center">Мы Вам позвоним</p>
+            </div>
+        </div>
+        <div class="container box">
+            <div class="form">
+                <div class="card">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="form-group">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+                        <div class="form-group">
+                            <input type="checkbox" id="yes" required="">
+                            <label for="yes"><span>Даю своё согласие на обработку <a href="{% url 'about:regulation_detail' slug='privacy' %}"> персональных данных</a></span></label>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Жду звонка!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block bottom-files-include %}
+    <script src="{% static 'assets/js/jquery.mask.min.js' %}"></script>
+    <script>$('#phone').mask("+7 (000) 000-00-00", {placeholder: "+7 ("});</script>
+{% endblock %}

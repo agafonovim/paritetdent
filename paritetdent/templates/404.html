@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Ошибка 404 - Не найдено{% endblock %}
+{% block description %}Информация по запросу не найдена!{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="container box">
+            <div class="form error">
+                <a href="{% url 'about:index' %}" class="error__back-link"><i class="fas fa-chevron-left" aria-hidden="true"></i> На главную</a>
+                <div class="card">
+                    <div class="error__icon">
+                        <i class="fas fa-flushed"></i>
+                    </div>
+                    <p class="error__text">Информация не найдена</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

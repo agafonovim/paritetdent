@@ -1,0 +1,16 @@
+from django import template
+
+from services.models import Sale
+
+register = template.Library()
+
+
+@register.simple_tag
+def get_sales_status():
+    # Проверка наличия акций
+        sales_count = Sale.objects.filter(published=True).count()
+        try:
+        Sale.objects.filter(published=True)
+    except Sale.DoesNotExist:
+        return False
+    return True

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Вакансия {{ job.position }} в Паритет-Дент{% endblock %}
+{% block description %}Вакансия {{ job.position }}. Зарплата: {{ job.salary|lower }}. Архангельск. Требуемый опыт: {{ job.experience|lower }}. {{ job.get_schedule_display }}.{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="container box">
+            <div class="job-detail">
+                <a href="{% url 'jobs:job_list' %}" class="job-detail__back-link"><i class="fas fa-chevron-left"></i> Ко всем вакансиям</a>
+                <div class="card job-detail__card">
+                    <div class="job-detail__card-header">
+                        <div class="job-detail__card-header_title">
+                            <h1>{{ job.position }}</h1>
+                            <p class="schedule">{{ job.get_schedule_display }}</p>
+                        </div>
+                        <a href="{% url 'jobs:application' %}" class="btn btn-primary job-detail__card_btn-offer">Откликнуться</a>
+                    </div>
+                    <p class="experience"><strong>Опыт работы:</strong> <span class="experience__text">{{ job.experience }}</span></p>
+                    <p class="salary"><strong>Зарплата:</strong> <span class="salary__text">{{ job.salary }}</span></p>
+                    <h2 class="requirements">Требования</h2>
+                    <p class="requirements__text">{{ job.requirements|safe|linebreaksbr }}</p>
+                    <h2 class="conditions">Условия</h2>
+                    <p class="requirements__text">{{ job.conditions|safe|linebreaksbr }}</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

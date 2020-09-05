@@ -1,0 +1,13 @@
+{% load sales_tag %}
+<aside class="sidebar">
+    <a class="btn btn-primary btn-large" href="{% url 'services:appointment_form' %}">Записаться на приём</a>
+    <a class="btn btn-success btn-large" href="{% url 'services:pricelist_list' %}">Прайс-лист</a>
+    {% get_sales_status as sales_status %}
+    {% if sales_status %}
+    <div class="sales-banner">
+        <h2 class="sale__title">Акции</h2>
+        <p class="sale__text">Мы стараемся оптимизировать ваши расходы, поэтому регулярно запускаем акции и скидки</p>
+        <a class="btn btn-outline" href="{% url 'services:sales_list' %}">Все скидки <i class="fas fa-caret-right"></i></a>
+    </div>
+    {% endif %}
+</aside>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Услуги стоматологического центра Паритет-Дент{% endblock %}
+{% block description %}Виды стоматологической помощи, лечение, гигиена, протезирование и имплантация зубов в Соломбале, г.Архангельск{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="page-title page-title_colored">
+            <div class="page-title_wrapper ">
+                <h1 class="title-text text_left">Наши услуги</h1>
+            </div>
+        </div>
+        <div class="container box">
+            <div class="services">
+                <div class="main-block">
+                    <div class="card">
+                        {% for classification in classifications %}
+                            <div class="services_category">
+                                <div class="title">
+                                    <img class="title__image" src="{{ classification.image.url }}" alt="{{ classification }}">
+                                    <h2 class="title__text">{{ classification }}</h2>
+                                </div>
+                                <div class="services-block">
+                                    {% for service in classification.service_set.all %}
+                                        <div class="service">
+                                            <div class="card-frame card-frame__service">
+                                                <h3 class="service-title">{{ service }}</h3>
+                                                <p class="service-text">{{ service.text }}</p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% include 'blocks/sidebar/sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Действующие скидки в Паритет-Дент{% endblock %}
+{% block description %}Скидки на услуги стоматологического центра Паритет-Дент. Скидки на имплантацию, протезирование и лечение зубов{% endblock %}
+
+{% block content %}
+    <main class="content">
+        <div class="page-title">
+            <div class="page-title_wrapper">
+                <h1 class="title-text text_center">Действующие скидки на услуги</h1>
+		<p class="under-title-text text_center">Не распространяются, если лечение осуществляется в рассрочку</p>
+            </div>
+        </div>
+        <div class="container box">
+            <div class="sales">
+            {% if object_list %}
+                {% for sales in object_list %}
+                    <div class="card">
+                        <h2>{{ sales.title }}</h2>
+                        <p>{{ sales.text|safe }}</p>
+                        <div class="expiration-date">
+                            <i class="fas fa-clock"></i>
+                            {% if sales.constantly %}
+                                Действует <span class="date_infinity">постоянно</span>
+                            {% else %}
+                                Действует до: <span class="date">{{ sales.expiration_date|date:"d.m.Y" }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="card no-sales__card">
+                    <div class="no-sales">
+                        <div class="no-sales__icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <span>Тут ничего нет, но это временное явление :)</span>
+                    </div>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

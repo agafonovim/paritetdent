@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Прайс-лист{% endblock %}
+{% block description %}Полный список услуг и цен стоматологического центра Паритет-Дент. Последнее изменение: {{ last_modified.modified_date|date:"d.m.Y" }}{% endblock %}
+
+{% block content %}
+    <main class="content">
+            <div class="page-title page-title_colored">
+                <div class="page-title_wrapper ">
+                    <h1 class="title-text text_left">Прайс-лист</h1>
+                    <p class="under-title-text text_left">Последнее изменение: {{ last_modified.modified_date|date:"d.m.Y" }}</p>
+                </div>
+            </div>
+            <div class="container box">
+                <div class="pricelist">
+                    {% include 'blocks/sales-banners/main-sales-banner.html' %}
+                    <div class="card">
+                        <div class="table-box">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="line-number">#</th>
+                                    <th scope="col" class="code">Код услуги по номенклатуре</th>
+                                    <th scope="col" class="service-title">Наименование услуги</th>
+                                    <th scope="col">Цена, руб.</th>
+                                </tr>
+                                </thead>
+                                {% regroup pricelist_list by get_stomatology_display as pricelist %}
+                                <tbody>
+                                {% for stomatology, services in pricelist %}
+                                    <tr class="stomatology">
+                                        <td colspan="4">{{ stomatology }}</td>
+                                    </tr>
+                                    {% for service in services %}
+                                    <tr>
+                                        <td class="line-number">{{ service.order }}</td>
+                                        <td>{{ service.number }}</td>
+                                        <td class="service-title">{{ service.title }}</td>
+                                        <td>{{ service.price|floatformat:"-2" }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="pagination">
+                            <span class="step-links">
+                                {% if page_obj.has_previous %}
+                                    <a class="pagination-button" href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-chevron-left pagination-button__left"></i> <span class="pagination-button__text">Предыдущая</span></a>
+                                {% endif %}
+                                <span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+                                {% if page_obj.has_next %}
+                                    <a class="pagination-button" href="?page={{ page_obj.next_page_number }}"><span class="pagination-button__text">Следующая</span><i class="fas fa-chevron-right pagination-button__right"></i></a>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+{% endblock %}
