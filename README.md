@@ -4,5 +4,6 @@
 1. Python3
 2. Django Framework
 3. jQuery
+4. Docker
 
 URL: https://paritetdent.net
