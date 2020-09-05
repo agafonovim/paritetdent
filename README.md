@@ -1,1 +1,8 @@
-# paritetdent
+# Сайт стоматологической клиники "Паритет-Дент"
+
+## Для разработки приложения использовались следующие технологии:
+1. Python3
+2. Django Framework
+3. jQuery
+
+URL: https://paritetdent.net
